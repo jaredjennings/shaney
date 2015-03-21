@@ -74,8 +74,10 @@ def build(config):
             o.write(file(fn).read())
 
     pdflatex('main.tex')
-    for i in config.indices:
-        makeindex(i)
+    for name, source_ext, dest_ext in config.indices:
+        source = 'main.' + source_ext
+        dest = 'main.' + dest_ext
+        makeindex('-o', dest, source)
     # BIBINPUTS setting above modifies behavior of bibtex here
     bibtex('main')
     pdflatex('main.tex')
@@ -85,8 +87,8 @@ def build(config):
     with file('compliance.csv', 'w') as ccsv:
         utf8ccsv = codecs.getwriter('UTF-8')(ccsv)
         for line in compliance2csv(config.meanings,
-                file('compliance.aux'),
-                file('explanations.aux')):
+                file('cyber_compliance.aux'),
+                file('cyber_explanations.aux')):
             print >> utf8ccsv, line
 
     log.info('')

@@ -46,7 +46,7 @@ class LatexEmitter(object):
             (VERBATIM, TOPLEVEL): "\\end{tightverbatim}\n",
     }
 
-    INDEX_ENTRY = "\\index{%(index)s}{%(item)s%(subtext)s}\n"
+    INDEX_ENTRY = "\\index[%(index)s]{%(item)s%(subtext)s}\n"
     MARGIN_REF = "\\marginpar{\\S\\ref{%(label)s}}\n"
     LABEL = "\\label{%(label)s}\n"
     IMPLEMENTS = "\\implements{%(document)s}{%(requirements)s}\n"

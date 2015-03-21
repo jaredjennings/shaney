@@ -173,7 +173,8 @@ class SourApplesConfig(SafeConfigParser):
     def indices(self):
         builtin = filter(None, self.get('indices', 'builtin').split('\n'))
         extra = filter(None, self.get('indices', 'extra').split('\n'))
-        return builtin + extra
+        split_up = [x.split(',') for x in builtin + extra]
+        return split_up
 
     def make_latex_function(self, name):
         return make_run_and_log_if_error(
