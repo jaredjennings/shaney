@@ -1,3 +1,16 @@
+1.13
+----
+
+Changed to work with the index package, no longer multind. Requires
+version 2.0 of the LaTeX cyber package. Index filenames have been
+changed, but everything works the same, except for this:
+
+If you write any index entries in your document manually, you need to
+use \index[indexname]{term...} rather than \index{indexname}{term...}
+(i.e., square brackets not curly braces). The g (general) index has
+gone away, because the default index is used if you don't pass the
+optional index name parameter to the \index macro.
+
 1.12
 ----
 

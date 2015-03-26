@@ -26,7 +26,7 @@ Take Puppet code with comments containing LaTeX inputs, and produce
 LaTeX inputs with verbatim sections containing the Puppet code. Also
 produce automatic summaries of statements of compliance posture.
 """,
-        version='1.12',
+        version='1.13',
         author='Jared Jennings',
         author_email='jjennings@fastmail.fm',
         license='GPLv3',
