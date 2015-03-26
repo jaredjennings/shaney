@@ -31,7 +31,9 @@ produce automatic summaries of statements of compliance posture.
         author_email='jjennings@fastmail.fm',
         license='GPLv3',
         platforms='OS-independent',
-        packages=['shaney', 'shaney.generators', 'shaney.sourapples'],
+        packages=['shaney', 'shaney.generators', 'shaney.sourapples',
+                  'shaney.test', 'shaney.generators.test',
+                  'shaney.sourapples.test'],
         entry_points = {
             'console_scripts': [
                 'shaneyg = shaney.generators.main:main',
