@@ -28,8 +28,8 @@ produce automatic summaries of statements of compliance posture.
 """,
         version='1.12',
         author='Jared Jennings',
-        author_email='jared.jennings.ctr@us.af.mil',
-        license='unlicensed',
+        author_email='jjennings@fastmail.fm',
+        license='GPLv3',
         platforms='OS-independent',
         packages=['shaney', 'shaney.generators', 'shaney.sourapples'],
         entry_points = {
