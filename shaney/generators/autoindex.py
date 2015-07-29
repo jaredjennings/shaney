@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
-from shaney.generators import pipe
-from shaney.generators.match import tagged_match
+from textpush import pipe
+from textpush.match import tagged_match
 
 def verbatim_match(regex):
     """Do something when a regex matches a line of Puppet syntax."""

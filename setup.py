@@ -42,6 +42,7 @@ produce automatic summaries of statements of compliance posture.
                 'sourapples_clean = shaney.sourapples.clean:main',
             ],
         },
+        install_requires=['textpush'],
         include_package_data=True,
         )
 

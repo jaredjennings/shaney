@@ -17,27 +17,28 @@
 import sys
 import logging
 
-from shaney.generators import splitmerge, pipe, prime, identity
-from shaney.generators import log, drop_tagged, take_tagged, null
-from shaney.generators.input import push_lines_from_files
+from textpush import (splitmerge, pipe, prime, identity, log,
+                      drop_tagged, take_tagged, null)
+from textpush.input import push_lines_from_files
+from textpush.output import lines_to_file
 from shaney.generators.comments import sort_comments, invert_comments
 from shaney.generators.autoindex import autoindex
-from shaney.generators.labels import buffer_labels_till_first_latex_line
-from shaney.generators.labels import labels_for_files, labels_for_modules
-from shaney.generators.requirement import find_implements, find_doneby
-from shaney.generators.requirement import find_bydefault
-from shaney.generators.requirement import find_ia_control_tags
-from shaney.generators.latex import lines_to_toplevel, LatexEmitter
+from shaney.generators.labels import (
+    buffer_labels_till_first_latex_line,
+    labels_for_files, labels_for_modules)
+from shaney.generators.requirement import (
+    find_implements, find_doneby, find_bydefault,
+    find_ia_control_tags)
+from shaney.generators.latex import (
+    lines_to_toplevel, LatexEmitter, neutralize_verb_tag)
 from shaney.generators.exec_summary import executive_summary
-from shaney.generators.output import lines_to_file
 from shaney.generators.paragraphs import paragraphs
-from shaney.generators.per_iac import puppet_labels_for_per_iac
-from shaney.generators.per_iac import latex_labels_for_per_iac
-from shaney.generators.per_iac import tag_iac_paragraphs
+from shaney.generators.per_iac import (
+    puppet_labels_for_per_iac, latex_labels_for_per_iac,
+    tag_iac_paragraphs)
 from shaney.generators.per_iac_output import latex_to_files_in
-from shaney.generators.match import neutralize_verb_tag
-from shaney.per_iac_pre import write_empty_sections, \
-        write_special_sections
+from shaney.per_iac_pre import (
+    write_empty_sections, write_special_sections)
 
 from shaney import ia_controls
 
@@ -91,7 +92,7 @@ class MarkVShaney(object):
                 tuple(take_credit_for), False))
 
     def do_latex_files(self):
-        go = push_lines_from_files(*self.latex_files)
+        go = push_lines_from_files(self.latex_files)
         master = pipe(
                 splitmerge(identity, lines_to_toplevel),
                 splitmerge(latex_labels_for_per_iac, identity),
@@ -110,7 +111,7 @@ class MarkVShaney(object):
 
 
     def do_puppet_files(self):
-        go = push_lines_from_files(*self.puppet_files)
+        go = push_lines_from_files(self.puppet_files)
         input_stage = splitmerge(
                 identity,
                 lambda t: pipe(sort_comments, invert_comments, t))

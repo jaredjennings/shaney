@@ -16,9 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import os.path
-from shaney.generators import pipe, prime, log
+from textpush import pipe, prime, log
 from shaney.generators.latex import LatexEmitter
-from shaney.generators.output import lines_to_file
+from textpush.output import lines_to_file
 
 class AbracaDict(dict):
     """Construct items when they don't exist, and remember them.

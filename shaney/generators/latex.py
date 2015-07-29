@@ -16,6 +16,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import re
+from textpush.match import tagged_match
+
+@tagged_match('toplevel', r'\\verb(.)([^\1]*)\1')
+def neutralize_verb_tag(m, value, target):
+    logging.getLogger('neutralize_verb_tag').debug('found a verb tag; m is %r', m)
+    neutralized = value[1]
+    # just in case there's more than one \verb
+    for a_match in m:
+        neutralized = neutralized.replace(r'\verb%s%s%s' % (
+            a_match[0], a_match[1], a_match[0]), r'\verb!...!')
+    target.send( (value[0], neutralized) )
+
+
 
 def lines_to_toplevel(target):
     while True:
